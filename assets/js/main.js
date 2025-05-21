@@ -31,6 +31,19 @@
   $.exists = function(selector) {
     return $(selector).length > 0;
   };
+    const btn = document.querySelector('li[style*="position: relative;"] > button');
+  const menu = btn.nextElementSibling;
+
+  btn.addEventListener('click', () => {
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Tutup dropdown kalau klik di luar
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      menu.style.display = 'none';
+    }
+  });
 
   $(window).on("load", function() {
     $(window).trigger("scroll");
